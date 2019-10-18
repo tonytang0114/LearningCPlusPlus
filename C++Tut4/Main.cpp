@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <numeric>
+#include <ctime>
 
 using namespace std;
 
@@ -53,25 +54,60 @@ int main() {
 
     // cout << "#";
 
-    double num1 = 0, num2 = 0;
+    // double num1 = 0, num2 = 0;
 
-    cout << "Enter number 1: ";
-    cin >> num1;
-    cout << "Enter number 2: ";
-    cin >> num2;
+    // cout << "Enter number 1: ";
+    // cin >> num1;
+    // cout << "Enter number 2: ";
+    // cin >> num2;
 
-    try {
-        if(num2 == 0){
-            throw "Division by zero is not possible";
-        } else{
-            printf("%.1f / %.1f = %.2f", num1, num2, (num1/num2));
-        }        
-    }
-    // str is basically a pointer to the (const)string literal.
-    catch(const char* exp){
-        cout << "Error : " << exp << "\n";
-    }
+    // try {
+    //     if(num2 == 0){
+    //         throw "Division by zero is not possible";
+    //     } else{
+    //         printf("%.1f / %.1f = %.2f", num1, num2, (num1/num2));
+    //     }        
+    // }
+    // // str is basically a pointer to the (const)string literal.
+    // catch(const char* exp){
+    //     cout << "Error : " << exp << "\n";
+    // }
     
+    // try {
+    //     cout << "Throwing exception\n";
+    //     throw runtime_error("Error Occurred");
+    //     cout << "Can you print me?\n";
+    // }
+
+    // catch(exception &exp){
+    //     cout << "Handled Exception : " <<
+    //         exp.what() << "\n";
+    // }
+
+    // catch(...){
+    //     cout << "Default Exception\n";
+    // }
+
+    srand(time(NULL));
+    int secretNum = rand() % 11;
+    int guess = 0;
+
+    while (true) {
+        cout << "Guess the number : ";
+        cin >> guess;
+        if (guess > secretNum) cout << "To Big\n";
+        if (guess < secretNum) cout << "To Small\n";
+        if (secretNum == guess) break;
+    }
+
+    // do {
+    //     cout << "Guess the number : ";
+    //     cin >> guess;
+    //     if (guess > secretNum) cout << "To Big\n";
+    //     if (guess < secretNum) cout << "To Small\n";
+    // } while (secretNum != guess);
+
+    cout << "You guess it\n";
 
     return 0;
 }
