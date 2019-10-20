@@ -14,6 +14,8 @@ string VectorToString(vector<string> vecs, char separator);
 string TrimWhitespace(string theString);
 vector<int> FindSubstringMatches(string theString, string substring);
 string ReplaceAllSubstrings(string theString, string substring, string newString);
+string CaesarCipher(string theString, int key, bool encrypt);
+
 int main(){
 
     // vector<string> vCusts(3);
@@ -120,4 +122,40 @@ string ReplaceAllSubstrings(string theString, string substring, string newString
     }
 
     return theString;
+}
+
+string CaesarCipher(string theString, int key, bool encrypt) 
+{
+    string returnString = "";
+    int charCode = 0;
+    char letter;
+
+    if(encrypt) key = key *-1;
+    for(char& c : theString){
+        if(isalpha(c)){
+            charCode = (int)c;
+            charCode += key;
+
+            if(isupper(c))
+            {
+                if(charCode > (int)'Z'){
+                    charCode -= 26;
+                } else if(charCode < (int)'A'){
+                    charCode += 26;
+                }
+            } else {
+                if(charCode > (int)'z'){
+                    charCode -= 26;
+                } else if(charCode < (int)'a'){
+                    charCode += 26;
+                }
+            }
+            letter = charCode;
+            returnString += letter;
+        } else{
+            letter = c;
+            returnString += c;
+        }
+    }
+    return returnString;
 }
