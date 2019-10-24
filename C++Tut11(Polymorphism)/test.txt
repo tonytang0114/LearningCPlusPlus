@@ -1,0 +1,2 @@
+Beginning of File
+Random number of strings

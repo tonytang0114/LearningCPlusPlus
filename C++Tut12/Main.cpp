@@ -5,93 +5,10 @@
 #include <ctime>
 #include <numeric>
 #include <cmath>
-#include <sstream> 
+#include <sstream>
 #include <fstream>
 
 using namespace std;
-vector<string> StringToVector(string theString,
-    char separator);
-
-
-// struct Shape {
-//     double length, width;
-
-//     Shape(double l = 1, double w = 1){
-//         length = l;
-//         width = w;
-//     }
-
-//     double Area(){
-//         return length * width;
-//     }
-// private:
-//     int id;
-// };
-
-// struct Circle: Shape{
-//     Circle(double width){
-//         this->width = width;
-//     }
-
-//     double Area(){
-//         return 3.14159 * pow((width/2),2);
-//     }
-// };
-
-// class Customer {
-// private:
-// // friend class can access private and protected members 
-// // of other class in which it is declared as friend.
-//     friend class GetCustomerData;
-//     string name;
-
-// public:
-//     Customer(string name){
-//         this->name = name;
-//     }  
-// };
-
-// class GetCustomerData{
-// public:
-//     static string GetName(Customer& customer){
-//         return customer.name;
-//     }
-// };
-
-// class Shape{
-// public:
-//     virtual double Area() = 0;
-// };
-
-// class Circle : public Shape{
-// protected:
-//     double width;
-// public:
-//     Circle(double w){
-//         width = w;
-//     }
-
-//     double Area() override{
-//         return 3.14159 * pow((width/2), 2);
-//     }
-// };
-
-// class Rectangle : public Shape{
-// protected:
-//     double height, width;
-// public:
-//     Rectangle(double h, double w){
-//         height = h;
-//         width = w;
-//     }
-//     double Area() override final{
-//         return height * width;
-//     }
-// };
-
-// void ShowArea(Shape& shape){
-//     cout << "Area : " << shape.Area() << "\n";
-// }
 
 // class Box {
 // public:
@@ -105,7 +22,7 @@ vector<string> StringToVector(string theString,
 //         width = w;
 //         breadth = b;
 //     }
-    
+
 //     //Other Unary Operators : --, *(pointer dereference),
 //     // -> (Member Selectino), !, &(Address of), +, -
 //     Box& operator++ (){
@@ -177,28 +94,10 @@ vector<string> StringToVector(string theString,
 //         breadth = boxToCopy.breadth;
 //     }
 
-
 // };
 
-int main(){
-    // Shape shape(10, 10);
-    // cout << "Square Area : " << shape.Area() << "\n";
-    // Circle circle(10);
-    // cout << "Circle Area : " << circle.Area() << "\n";
-
-    // Shape rectangle{10,15};
-    // cout << "Rectange Area : " << rectangle.Area() << "\n";
-
-    // Customer tom("tom");
-    // GetCustomerData getName;
-    // cout << "Name : " << getName.GetName(tom) << "\n";
-
-    // Polymorphism in c++
-    // Rectangle rectangle(10, 5);
-    // Circle circle(10);
-    // ShowArea(rectangle);
-    // ShowArea(circle);
-
+int main()
+{
     //Box (overload operators)
     // Box box(10, 10, 10);
     // ++box;
@@ -218,9 +117,10 @@ int main(){
     string txtToWrite = "";
     string txtFromFile = "";
 
-    writeToFile.open("test.txt", ios_base::out | 
-            ios_base::trunc);
-    if(writeToFile.is_open()){
+    writeToFile.open("test.txt", ios_base::out |
+                                     ios_base::trunc);
+    if (writeToFile.is_open())
+    {
         writeToFile << "Beginning of File\n";
         cout << "Enter data to write : ";
         getline(cin, txtToWrite);
@@ -229,38 +129,43 @@ int main(){
     }
 
     readFromFile.open("test.txt", ios_base::in);
-    if(readFromFile.is_open()){
-        while(readFromFile.good()){
+    if (readFromFile.is_open())
+    {
+        while (readFromFile.good())
+        {
             getline(readFromFile, txtFromFile);
             cout << txtFromFile << "\n";
 
             vector<string> vect = StringToVector(txtFromFile, ' ');
             int charCount;
             int wordsInLine = vect.size();
-            cout << "Words in Line : " <<
-                wordsInLine << "\n";
-            for(auto word: vect){
-                for(auto letter: word){
+            cout << "Words in Line : " << wordsInLine << "\n";
+            for (auto word : vect)
+            {
+                for (auto letter : word)
+                {
                     charCount++;
                 }
             }
-            int avgNumChars = charCount/wordsInLine;
-            cout << "Avg Word Length : " <<
-                avgNumChars << "\n";
+            int avgNumChars = charCount / wordsInLine;
+            cout << "Avg Word Length : " << avgNumChars << "\n";
         }
         readFromFile.close();
     }
     return 0;
 }
 
-vector<string> StringToVector(string theString,
-    char separator) {
-        vector<string> vecsWords;
-        stringstream ss(theString);
-        string sIndivStr;
 
-        while(getline(ss, sIndivStr, separator)){
-            vecsWords.push_back(sIndivStr);
-        }
-        return vecsWords;
+vector<string> StringToVector(string theString,
+                              char separator)
+{
+    vector<string> vecsWords;
+    stringstream ss(theString);
+    string sIndivStr;
+
+    while (getline(ss, sIndivStr, separator))
+    {
+        vecsWords.push_back(sIndivStr);
     }
+    return vecsWords;
+}
